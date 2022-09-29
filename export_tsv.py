@@ -8,6 +8,7 @@ import wave
 
 
 def write_tsv(out_path: str, root_path: str, files: List[str]):
+    nsamples = []
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(root_path + '\n')
         for file in tqdm.tqdm(files):
@@ -20,8 +21,10 @@ def write_tsv(out_path: str, root_path: str, files: List[str]):
             if sr != 48000:
                 print(p)
                 continue
-
+            
+            nsamples.append(nsample)
             f.write(f'{p}\t{nsample}\n')
+    print("Max Sample: ", max(nsamples))
 
 def main():
     chinese_files = list(glob.glob("datasets/genshin-20220915/chinese/wav/*.wav"))
