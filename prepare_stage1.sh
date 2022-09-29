@@ -12,10 +12,7 @@ n_cluster=100
 python hubert/simple_kmeans/dump_mfcc_feature.py ${tsv_dir} train ${nshard} ${rank} ${feat_dir} --sample_rate 48000
 python hubert/simple_kmeans/dump_mfcc_feature.py ${tsv_dir} valid ${nshard} ${rank} ${feat_dir} --sample_rate 48000
 python hubert/simple_kmeans/dump_mfcc_feature.py ${tsv_dir} test ${nshard} ${rank} ${feat_dir} --sample_rate 48000
-# feature extraction (HUBERT feature)
-# python hubert/simple_kmeans/dump_hubert_feature.py ${tsv_dir} genshin_train ${ckpt_path} ${layer} ${nshard} ${rank} ${feat_dir}
-# python hubert/simple_kmeans/dump_hubert_feature.py ${tsv_dir} genshin_valid ${ckpt_path} ${layer} ${nshard} ${rank} ${feat_dir}
-# python hubert/simple_kmeans/dump_hubert_feature.py ${tsv_dir} genshin_test ${ckpt_path} ${layer} ${nshard} ${rank} ${feat_dir}
+
 
 # k-means clustering
 python hubert/simple_kmeans/learn_kmeans.py ${feat_dir} train ${nshard} km_train.joblib.pkl ${n_cluster} --percent 0.1
