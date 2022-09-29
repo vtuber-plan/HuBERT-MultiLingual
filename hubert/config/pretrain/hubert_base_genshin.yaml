@@ -14,20 +14,20 @@ checkpoint:
 
 
 distributed_training:
-  ddp_backend: no_c10d
+  ddp_backend: c10d
   distributed_backend: 'nccl'
-  distributed_world_size: 32
+  distributed_world_size: 1
   distributed_port: 29671
-  nprocs_per_node: 8
+  nprocs_per_node: 4
   find_unused_parameters: true
 
 task:
   _name: hubert_pretraining
-  data: datasets/genshin-20220915
-  label_dir: tsv_dir
-  labels: tsv_dir
+  data: /data/wangjun/github/fairseq_hubert/datasets/genshin-20220915
+  label_dir: /data/wangjun/github/fairseq_hubert/lab_dir
+  labels: ["km"]
   label_rate: ${model.label_rate}
-  sample_rate: 16000
+  sample_rate: 48000
   max_sample_size: 250000
   min_sample_size: 32000
   pad_audio: false
@@ -64,7 +64,7 @@ lr_scheduler:
 
 model:
   _name: hubert
-  label_rate: ???
+  label_rate: 100
   skip_masked: false
   skip_nomask: false
   mask_prob: 0.80

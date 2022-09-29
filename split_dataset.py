@@ -15,15 +15,15 @@ def main():
     valid_lines = lines[train_split:valid_split]
     test_lines = lines[valid_split:]
 
-    with open("tsv_dir/genshin_train.tsv", "w", encoding='utf-8') as f:
+    with open("datasets/genshin-20220915/train.tsv", "w", encoding='utf-8') as f:
         f.write(root + '\n')
         f.writelines(train_lines)
     
-    with open("tsv_dir/genshin_valid.tsv", "w", encoding='utf-8') as f:
+    with open("datasets/genshin-20220915/valid.tsv", "w", encoding='utf-8') as f:
         f.write(root + '\n')
         f.writelines(valid_lines)
     
-    with open("tsv_dir/genshin_test.tsv", "w", encoding='utf-8') as f:
+    with open("datasets/genshin-20220915/test.tsv", "w", encoding='utf-8') as f:
         f.write(root + '\n')
         f.writelines(test_lines)
 

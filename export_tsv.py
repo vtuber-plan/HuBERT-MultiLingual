@@ -14,7 +14,12 @@ def write_tsv(out_path: str, root_path: str, files: List[str]):
             p = "/".join(file.split('/')[-3:])
 
             with wave.open(os.path.join(root_path, p), 'r') as audio_file:
+                sr = audio_file.getframerate()
                 nsample = audio_file.getnframes()
+            
+            if sr != 48000:
+                print(p)
+                continue
 
             f.write(f'{p}\t{nsample}\n')
 
@@ -24,7 +29,7 @@ def main():
     japanese_files = list(glob.glob("datasets/genshin-20220915/japanese/wav/*.wav"))
     korean_files = list(glob.glob("datasets/genshin-20220915/korean/wav/*.wav"))
 
-    write_tsv("tsv_dir/genshin.tsv", "datasets/genshin-20220915", chinese_files + english_files + japanese_files + korean_files)
+    write_tsv("tsv_dir/genshin.tsv", os.path.abspath("datasets/genshin-20220915"), chinese_files + english_files + japanese_files + korean_files)
 
 if __name__ == "__main__":
     main()
