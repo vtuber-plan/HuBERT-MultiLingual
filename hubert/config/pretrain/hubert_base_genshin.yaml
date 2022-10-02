@@ -2,6 +2,8 @@
 
 common:
   fp16: true
+  bf16: false
+  amp: false
   log_format: json
   log_interval: 200
   seed: 1337
@@ -49,8 +51,9 @@ criterion:
 
 optimization:
   max_update: 400000
-  lr: [0.0005]
+  lr: [0.0002]
   clip_norm: 10.0
+  update_freq: [8]
 
 optimizer:
   _name: adam
